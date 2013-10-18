@@ -2,15 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="58ef025b-a9a3-46dd-adc0-bf8e3cad6c32" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/usage/src/com/pairwinter/usage/array/ArrayUsage.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/usage/usage.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="usage.iws" />
     <ignored path=".idea/workspace.xml" />
     <file path="/Dummy.txt" changelist="58ef025b-a9a3-46dd-adc0-bf8e3cad6c32" time="1382055715132" ignored="false" />
     <file path="/ArrayUsage.java" changelist="58ef025b-a9a3-46dd-adc0-bf8e3cad6c32" time="1381806063364" ignored="false" />
-    <file path="$PROJECT_DIR$/.idea/workspace.xml" changelist="58ef025b-a9a3-46dd-adc0-bf8e3cad6c32" time="1381918211437" ignored="false" />
     <file path="$PROJECT_DIR$/../../everbridge/omniplatform/portal/platform-webapp/src/main/resources/i18n/messages_en_CA.properties" changelist="58ef025b-a9a3-46dd-adc0-bf8e3cad6c32" time="1381804318516" ignored="false" />
     <file path="$PROJECT_DIR$/../../everbridge/omniplatform/portal/platform-threshold/src/main/java/com/everbridge/platform/threshold/service/impl/ThresholdServiceImpl.java" changelist="58ef025b-a9a3-46dd-adc0-bf8e3cad6c32" time="1381804318516" ignored="false" />
     <file path="$PROJECT_DIR$/../../everbridge/omniplatform/portal/platform-webapp/src/main/java/com/everbridge/platform/portal/matrix/web/IncidentCategoryController.java" changelist="58ef025b-a9a3-46dd-adc0-bf8e3cad6c32" time="1381804318516" ignored="false" />
@@ -142,7 +140,7 @@
       <file leaf-file-name=".gitignore" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/.gitignore">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="7" column="38" selection-start="50" selection-end="50" vertical-scroll-proportion="0.12041284">
+            <state line="8" column="7" selection-start="57" selection-end="57" vertical-scroll-proportion="0.13761468">
               <folding />
             </state>
           </provider>
@@ -528,7 +526,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="38" selection-start="50" selection-end="50" vertical-scroll-proportion="0.12041284">
+        <state line="8" column="7" selection-start="57" selection-end="57" vertical-scroll-proportion="0.13761468">
           <folding />
         </state>
       </provider>

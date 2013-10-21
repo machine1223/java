@@ -32,6 +32,7 @@ public class MailAction extends BaseAction
 		{
 			UserService userService = new UserServiceImpl();
 			userService.register(user);
+
 		}
 		catch (Exception e)
 		{

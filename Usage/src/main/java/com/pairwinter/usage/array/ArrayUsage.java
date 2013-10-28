@@ -26,6 +26,9 @@ public class ArrayUsage {
         for (Long id : ids1) {
             System.out.println(id);
         }
+
+        Iterable<Long> iterable = new ArrayList<Long>();
+
     }
 
     /**

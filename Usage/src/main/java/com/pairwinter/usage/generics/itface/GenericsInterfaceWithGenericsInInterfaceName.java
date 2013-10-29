@@ -19,7 +19,6 @@ public interface GenericsInterfaceWithGenericsInInterfaceName<T> {
      * @return
      */
     public <T> T fetchResultWithGenericsDeclaration(T t);
-    public <T1> T1 fetchResultWithGenericsDeclaration(Class<T1> t) throws Exception;
 
     /**
      * 泛型方法，返回类型前未添加 <T>

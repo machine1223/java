@@ -38,16 +38,19 @@ public class GenericsUsage {
         GenericsInterfaceWithOutGenericsInInterfaceName genericsInterfaceWithOutGenericsInInterfaceName = new GenericsInterfaceImplWithOutGenericsInInterfaceName();
 //        如果 Result<Long> result2 就会报编译错误
 //        Result<Long> result2 = genericsInterfaceWithGenericsInInterfaceName.fetchResultWithGenericsDeclaration(new Result<Long>());
-        Object result2 = genericsInterfaceWithGenericsInInterfaceName.fetchResultWithGenericsDeclaration(new Result<Long>());
+        Object object2 = genericsInterfaceWithGenericsInInterfaceName.fetchResultWithGenericsDeclaration(new Result<Long>());
 
-        Result<Long> result3 = null;
-        try{
-            result3 = genericsInterfaceWithGenericsInInterfaceName.<Result<Long>>fetchResultWithGenericsDeclaration(new Result<Long>());
-        }catch(Exception e){
-            e.printStackTrace();
-        }
+        Result<Long> result3 = new Result<Long>();
+        result3.setResult(3l);
+//        下面一句的使用方法不正确，在泛型类中（即类名后面跟有'<T>'），似乎只有静态泛型方法才能够这么写！
+//        Result<Long> result3_ = genericsInterfaceWithGenericsInInterfaceName.<Result<Long>>fetchResultWithGenericsDeclaration(result3);
+        Result<Long> result3Static_ = GenericsInterfaceImplWithGenericsInInterfaceName.fetchResultWithGenericsDeclarationStatic(result3);
+        System.out.println(result3Static_.getResult());
 
-        Result<Long> result4 = genericsInterfaceWithOutGenericsInInterfaceName.<Result<Long>>fetchResultWithGenericsDeclaration(new Result<Long>());
-
+        Result<Long> result4 = new Result<Long>();
+        result4.setResult(4l);
+//        下面一句没有问题，GenericsInterfaceWithOutGenericsInInterfaceName 这个类不是泛型类
+        Result<Long> result4_ = genericsInterfaceWithOutGenericsInInterfaceName.<Result<Long>>fetchResultWithGenericsDeclaration(result4);
+        System.out.println(result4_.getResult());
     }
 }

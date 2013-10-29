@@ -19,6 +19,10 @@ public class GenericsInterfaceImplWithOutGenericsInInterfaceName implements Gene
 
     @Override
     public <T> T fetchResultWithGenericsDeclaration(T t) {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+        return t;  //To change body of implemented methods use File | Settings | File Templates.
+    }
+
+    public static <T> T fetchResultWithGenericsDeclarationStatic(T t) {
+        return t;  //To change body of implemented methods use File | Settings | File Templates.
     }
 }

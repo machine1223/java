@@ -17,17 +17,16 @@ public class GenericsInterfaceImplWithGenericsInInterfaceName<T> implements Gene
     }
 
     @Override
-    public <T1> T1 fetchResultWithGenericsDeclaration(T1 t) {
-        return t;
+    public <T1> T1 fetchResultWithGenericsDeclaration(T1 t1) {
+        return t1;  //To change body of implemented methods use File | Settings | File Templates.
+    }
+
+    public static <T2> T2 fetchResultWithGenericsDeclarationStatic(T2 t2){
+        return t2;
     }
 
     @Override
-    public <T1> T1 fetchResultWithGenericsDeclaration(Class<T1> t) throws Exception{
-        T1 tInstance =  t.newInstance();
-        return tInstance;
-    }
-    @Override
     public T fetchResultWithOutGenericsDeclaration(T t) {
-        return t;
+        return t;  //To change body of implemented methods use File | Settings | File Templates.
     }
 }

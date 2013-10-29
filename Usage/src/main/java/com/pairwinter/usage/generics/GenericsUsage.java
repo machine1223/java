@@ -1,5 +1,8 @@
 package com.pairwinter.usage.generics;
 
+import com.pairwinter.usage.generics.fruit.Apple;
+import com.pairwinter.usage.generics.fruit.Banana;
+import com.pairwinter.usage.generics.fruit.Fruit;
 import com.pairwinter.usage.generics.itface.GenericsInterfaceWithGenericsInInterfaceName;
 import com.pairwinter.usage.generics.itface.GenericsInterfaceWithOutGenericsInInterfaceName;
 import com.pairwinter.usage.generics.itfaceimpl.GenericsInterfaceImplWithGenericsInInterfaceName;
@@ -17,17 +20,20 @@ import java.util.List;
  */
 public class GenericsUsage {
     public static void main(String[] args) {
+        testGenericsOfClass();
+        testGenericsOfInterface();
+        testParentClassAndSubClassInList();
+    }
+
+    public static void testGenericsOfClass() {
         Result result = new Result();
         result.setResult("string");
         System.out.println(result.getResult());
         result = new Result();
         result.setResult(1);
         System.out.println(result.getResult());
-
-        List list = new ArrayList();
-        list.add("list string");
-        System.out.println(list.get(0));
-
+    }
+    public static void testGenericsOfInterface() {
         GenericsInterfaceWithGenericsInInterfaceName<Result<Long>> genericsInterface = new GenericsInterfaceImplWithGenericsInInterfaceName<Result<Long>>();
         Result<Long> result1 = new Result<Long>();
         result1.setResult(1l);
@@ -52,5 +58,21 @@ public class GenericsUsage {
 //        下面一句没有问题，GenericsInterfaceWithOutGenericsInInterfaceName 这个类不是泛型类
         Result<Long> result4_ = genericsInterfaceWithOutGenericsInInterfaceName.<Result<Long>>fetchResultWithGenericsDeclaration(result4);
         System.out.println(result4_.getResult());
+    }
+
+    public static void testParentClassAndSubClassInList() {
+        List list = new ArrayList();
+        list.add("list string");
+        System.out.println(list.get(0));
+
+        Apple apple = new Apple();
+        Fruit fruit = apple;
+
+        List<Apple> appleList = new ArrayList<Apple>();
+//        下面的赋值操作编译不会通过，因为fruitList不能只放Apple
+//        List<Fruit> fruitList = appleList;
+        List<Fruit> fruitList = new ArrayList<Fruit>();
+        fruitList.add(new Apple());
+        fruitList.add(new Banana());
     }
 }

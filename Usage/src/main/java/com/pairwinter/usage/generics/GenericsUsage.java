@@ -8,8 +8,12 @@ import com.pairwinter.usage.generics.itface.GenericsInterfaceWithGenericsInInter
 import com.pairwinter.usage.generics.itface.GenericsInterfaceWithOutGenericsInInterfaceName;
 import com.pairwinter.usage.generics.itfaceimpl.GenericsInterfaceImplWithGenericsInInterfaceName;
 import com.pairwinter.usage.generics.itfaceimpl.GenericsInterfaceImplWithOutGenericsInInterfaceName;
+import javafx.scene.shape.Circle;
+import javafx.scene.shape.Shape;
+import utils.UsageUtils;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 /**
@@ -43,8 +47,9 @@ public class GenericsUsage {
 
         GenericsInterfaceWithGenericsInInterfaceName genericsInterfaceWithGenericsInInterfaceName = new GenericsInterfaceImplWithGenericsInInterfaceName();
         GenericsInterfaceWithOutGenericsInInterfaceName genericsInterfaceWithOutGenericsInInterfaceName = new GenericsInterfaceImplWithOutGenericsInInterfaceName();
-//        如果 Result<Long> result2 就会报编译错误
-//        Result<Long> result2 = genericsInterfaceWithGenericsInInterfaceName.fetchResultWithGenericsDeclaration(new Result<Long>());
+//        下面两行报编译错误
+//        Result<Long> result2_ = genericsInterfaceWithGenericsInInterfaceName.fetchResultWithGenericsDeclaration(new Result<Long>());
+//        Result<Long> result2__ = genericsInterfaceWithGenericsInInterfaceName.<Result<Long>>fetchResultWithGenericsDeclaration(new Result<Long>());
         Object object2 = genericsInterfaceWithGenericsInInterfaceName.fetchResultWithGenericsDeclaration(new Result<Long>());
 
         Result<Long> result3 = new Result<Long>();
@@ -86,25 +91,28 @@ public class GenericsUsage {
         fruitList.add(new Banana());
 
 //        为了解决一个fruitList只能放Apple的编译问题，可以在泛型定义上进行处理,使用带有通配符的扩展声明。
-//        "<? extends Fruit>" 表示List中对象是Fruit的子类，但是无法确定具体是哪个子类。
+//        "<? extends Fruit>" 表示上限是Fruit,List中对象是Fruit或者Fruit的子类，但是无法确定具体是哪个类。
         List<? extends Fruit> listExtendsFruit = appleList;
         Fruit fruit_ = new Fruit();
 //        但是下面操作会报编译错误，因为，给listExtendsFruit添加对象fruit_的时候，泛型不知道这个fruit_是Fruit还是Fruit的子对象，无法完成类型转换.
+//        应该持有的对象是Fruit的子类，而且具体是哪一个子类还是个未知数，所以加入任何Fruit的子类都会有问题
 //        通配符”extends“ 声明的对象无法添加任何对象。
 //        listExtendsFruit.add(fruit_);
 //        listExtendsFruit.add(new Apple());
 
-//        "<? super Fruit>" 表示List中对象是Apple的父类，但是无法确定具体是哪个父类。
+//        "<? super Apple>" 表示List中持有的对象是Apple的父类，下限是Fruit，虽然无法确定具体是哪个父类，但是add Apple或Apple的子类是没有问题的
         List<? super Apple> listSuperApple = appleList;
         listSuperApple.add(new Apple());
         listSuperApple.add(new GreenApple());
-//        编译报错，因为Fruit不是Apple父类的子类，它是Apple的父类
+//        编译报错，因为Fruit是Apple的父类，而且List中持有的对象是无法确定是哪个父类，所以添加Fruit就编译报错
 //        listSuperApple.add(new Fruit());
         System.out.println("listSuperApple.size() ------> "+listSuperApple.size());
 
         List<Fruit> fruits = new ArrayList<Fruit>();
         listSuperApple = fruits;
         listSuperApple.add(new Apple());
+//        同样的下面也编译不过去。
+//        listSuperApple.add(new Fruit());
     }
 
     public static void testParentClassAndSubClassInArray(){
@@ -117,5 +125,30 @@ public class GenericsUsage {
         }catch (ArrayStoreException ase){
             System.out.println("fruits[0] = new Banana(); 这句话发生了ArrayStoreException异常");
         }
+
+        fruits = new Fruit[5];
+        fruits[0] = new Banana();
+        System.out.println("fruits[0] = new Banana(); 赋值成功！");
+
+        UsageUtils.splitLine("测试协变数组类型！");
+        testComparable();
+    }
+
+    public static Comparable findMax (Comparable[] arr){
+        int maxIndex = 0;
+        for (int i = 0; i < arr.length; i++) {
+            Comparable comparable = arr[i];
+            if(comparable.compareTo(arr[maxIndex])>0){
+                maxIndex = i;
+            }
+        }
+        return arr[maxIndex];
+    }
+//    测试数组的协变性，findMax传递的参数必须是类型兼容的
+    public static void testComparable(){
+        String[] strings=new String[]{"a","b","c"};
+        Integer[] integers = new Integer[]{1,2,3};
+        System.out.println(findMax(strings));
+        System.out.println(findMax(integers));
     }
 }

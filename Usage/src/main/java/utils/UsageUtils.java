@@ -7,7 +7,7 @@ import java.util.Random;
  * User: pairwinter
  * Date: 13-11-12
  * Time: 下午5:39
- * To change this template use File | Settings | File Templates.
+ * Usage 工具类。
  */
 public class UsageUtils {
     public static void splitLine(String name){

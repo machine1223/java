@@ -36,7 +36,7 @@ public class ArrayUsage {
      * @param first
      * @param second
      */
-    public static void filterIds(List<Long> first , List<Long> second){
+    private static void filterIds(List<Long> first , List<Long> second){
         for (int i = first.size() - 1; i >= 0; i--) {
             Long l = first.get(i);
             if(!second.contains(l)){

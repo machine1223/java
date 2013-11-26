@@ -14,6 +14,14 @@ public class UsageUtils {
         System.out.println("\n******************************************"+name+"******************************************\n");
     }
 
+    public static void print(String formate,Object... args){
+        System.out.print(String.format(formate,args));
+    }
+    public static void println(String formate,Object... args){
+        System.out.println(String.format(formate,args));
+    }
+
+
     /**
      * 打印int数组
      * @param arrs

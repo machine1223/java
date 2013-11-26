@@ -12,8 +12,8 @@ package com.pairwinter.designpattern.adapter;
 public class Socket {
     public void plug1(){
         System.out.println("插座的正极");
-    };
+    }
     public void plug2(){
         System.out.println("插座的负极");
-    };
+    }
 }

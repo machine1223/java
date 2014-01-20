@@ -1,0 +1,108 @@
+@charset "utf-8";
+/* CSS Document */
+.txl-bt-s,.txl-bt{color: #000; cursor:pointer;}
+
+.first-layer, .btnPre, .btnNxt,.txl_left_t,.create_identifier_btn,.line-index,.search-btn,.navMsg_s,.navMsg_x,.search-option,.second-layer ul li.on, .write-imgclose, .write-imgopen, .nfschinaAjaxMessageContainerBody{background-image:url(../images/img/skin_yeahshuxiang/bg.gif); background-repeat:no-repeat;}
+
+#menu{background:url(../images/img/skin_yeahshuxiang/shuxiang-left.gif) -1px bottom no-repeat;}
+#sider{background-image:url("../images/img/skin_yeahshuxiang/bg.gif"); background-repeat:repeat-y; width:189px;}
+
+.lb-tit, .lb-tit1, .mail-box-title, .lx-mail-title, .ls-text,.nfschinaDialogHead{background-image:url(../images/img/skin_yeahshuxiang/bgx.png);}
+
+.ipt_b{background:url(../images/img/skin_yeahshuxiang/bg.gif) -946px -176px no-repeat;}
+
+/*--保存草稿成功样式--*/
+.saveDraftSuccess{background: #FFFDD2}
+
+/*-----------header-----------*/
+#header{background:url(../images/img/skin_yeahshuxiang/c-bg.png);}	
+.left-bg{background:url(../images/com/lh-bg.png) left 0px no-repeat;}
+.right-bg{background:url(../images/com/rh-bg.png) right 0px no-repeat;}
+.search-input{border:solid 1px #B5834D;}
+.search-btn{background:url(../images/img/skin_yeahshuxiang/bg.gif) -622px 0px no-repeat;}
+.search-option{background:url(../images/img/skin_yeahshuxiang/bg.gif) -707px 0px no-repeat;}
+.welcome span a {color: #000;}
+/*-----------header-----------*/
+.li_img{background:url(../images/img/skin_yeahshuxiang/bgx.png) 0px -202px no-repeat;}
+#mailListInclude{background:#fff url(../images/com/title-bg.png) right -159px no-repeat;}
+
+/*------------阅读邮件样式-------------*/
+.fj_div,.fj_list{background-color: #FAF8F4; border: 1px solid #D6B99C;}
+.black{color:#000; text-decoration:none;}
+.ck_color{color:#999999;}
+.ck_color1{color:#7A8180;text-decoration:none;}
+.ck_color2{color:#000;}
+.ck_color3{color:#7A8180;}
+.ck_color2, .ck_color3{text-decoration:underline; padding:0px 5px 0px 5px;}
+.attach{background: url("../images/com/com-img.gif") no-repeat -103px -60px; float:left;  height:30px;width:20px; zoom:1; overflow:hidden;}
+.color_list{color:#000; text-decoration:underline}
+/*------------阅读邮件样式-------------*/
+
+/*-------------menu------------*/
+.first-layer{border-bottom:solid 1px #D6B99C;}
+.second-layer span{color:#000;}
+.second-layer ul li{color:#000;}
+.second-layer ul li a{ color:#000;}
+/*--鼠标画上去变颜色--*/
+.second-layer ul li .over{background-color:#E2F5FC; cursor:pointer; display:block; margin-right:2px;}
+.second-layer ul.second-layer-nav li.on{background:#EFD8BC; border:1px solid #D6B99C;margin: 1px 4px;height:20px}
+/*#menu-mailbox{background:url(../images/com/menu-bg.png) -193px bottom no-repeat;}*/
+
+/*-------------------内容导航----------------------*/
+.lb-tit {border-bottom:solid 1px #D18E9A;background:url(../images/com/title-bg.png) right -121px no-repeat;}
+.tit-side .tabnav li ul{border:solid 1px #F79E76;}
+
+/*--------------------收信列表title----------------*/
+.g-title1 h4 {color:#000;}
+.g-title1 h4 a{color:#000; text-decoration:none;}
+
+/*--修改密码 等其他--*/
+.modify-password,.auto-transmit,.display-option,.auto-reply{border:solid 1px #E0A4AF;}
+
+.navMsg_s{background-position:-701px -114px;}
+.navMsg_x{background-position:-567px -114px;}
+
+/*---------------写信 write---------------*/
+.write-imgclose,.write-imgopen{height:60px; width: 7px; cursor:pointer;}
+.write-imgclose{background-position:-214px -132px;}
+.write-imgopen{background-position:-199px -132px;}
+.write-all{ background-color: #FAF8F4; border:1px solid #D6B99C;}
+.write-rt{border:solid 1px #D6B99C; border-top:none; width:198px;}
+.lx-mail-title{}
+.lx-mail-title span {color: #000;}
+.xx-input, .xx-subject {border:1px solid #D6B99C;}
+.ctn {background-color:#F0A3B1;}/*进度条*/
+/*上传附近框*/
+.attachmentsList-div{background:#E8D3BB; border:1px solid #D6B99C;}
+.ls-text h2 font{color:#1C7EC0;}
+
+#contactPersonList {border:1px solid #F79E76;}
+/*--通讯录中联系人列表奇偶颜色样式--*/
+.odd-num{background-color:#fff;}
+.even-num{background-color:#F9F9F9;}
+.td-hover{background-color:#D1ECFC;}
+
+/*----------------------------设置---------------------------*/
+/*--通讯录联系人--*/
+.link_font{color:#0D579F;}
+/*导航菜单*/
+.tab{/*background:url(../images/img/skin_yeahshuxiang/bgx.png) repeat-x 0px -695px;*/background:url(../images/img/skin_yeahshuxiang/shuxiang.gif) right -71px;}
+.tab a.selected {border-top:solid 1px #D6B99C; border-left:solid 1px #D6B99C; border-right:solid 1px #D6B99C;}
+.tab-div table tr td a{color:#000;}
+/*导航菜单*/
+.create_identifier{border:1px solid #DEB2BA;}
+.create_identifier ul li a {color:#F26926;}
+
+/*弹出窗口*/
+.nfschinaDialogHead{border:solid 1px #D6B99C;}
+.nfschinaDialogBody{border:solid 1px #D6B99C;}
+.nfschinaDialogButton{border:solid 1px #D6B99C; border-top:none; background-color:#FEF9F2;}
+
+#cke_bottom_content{display: none}
+.nfschinaAjaxMessageContainerBody{	
+	background-position:-462px -202px;
+	background-repeat:no-repeat;
+	height:65px;
+}
+
+

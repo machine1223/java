@@ -1,0 +1,16 @@
+*{ margin:0px; padding:0px;}
+html{
+	padding: 5px;
+}
+body {
+background-color:#FFFFFF;
+color:#000000;
+font-family:arial,verdana,sans-serif;
+font-size:14px;
+line-height:1.7;
+}
+pre {
+font-family:arial,verdana,sans-serif;
+white-space:pre-wrap;
+word-wrap:break-word;
+}

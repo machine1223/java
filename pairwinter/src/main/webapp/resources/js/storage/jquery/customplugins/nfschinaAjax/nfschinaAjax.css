@@ -1,0 +1,49 @@
+.nfschinaAjaxMessageContainerTop
+{
+	left:0;
+	top:-3px;
+	filter:chroma(color=black);
+	font-size: 0;
+	position: absolute;
+	line-height: 0;
+	width:255px;
+}
+
+.nfschinaAjaxMessageContainer{
+	display:none;
+	z-index:10000;
+	position:absolute;
+	width:255px;	
+}
+.nfschinaAjaxMessageContainerBody div{
+	background:url("loadingImg.gif") no-repeat scroll 47px 14px transparent;
+	font-weight:bold;
+	height:38px;
+	padding-left:97px;
+	padding-top:24px;
+}
+.nfschinaAjaxMessageContainerBottom
+{
+	left:0;
+	bottom:-3px;
+	filter:chroma(color=black);
+	font-size: 0;
+	position: absolute;
+	line-height: 0;
+	width: 255px;
+}
+.nfschinaAjax_bg{
+	display:none;
+	z-index:9999;
+	position:absolute;
+	background-color:black;
+	top: 0;
+	left: 0;
+}
+.nfschinaAjax_bg_iframe{
+	border:none;
+	position:absolute;
+	background-color:black;
+	top: 0;
+	left: 0;
+}

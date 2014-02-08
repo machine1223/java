@@ -1,4 +1,2 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
-<div class="user_main">
-    USER MAIN
-</div>
+<jsp:include page="/site/app/views/user/userIndex.html"></jsp:include>

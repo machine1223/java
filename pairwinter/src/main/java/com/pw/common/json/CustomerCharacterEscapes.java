@@ -13,7 +13,7 @@ import org.slf4j.Logger;
  * To change this template use File | Settings | File Templates.
  */
 public class CustomerCharacterEscapes extends CharacterEscapes {
-    Logger logger = LogWrapper.getLogger(CustomerCharacterEscapes.class).getWrappedLogger();
+//    Logger logger = LogWrapper.getLogger(CustomerCharacterEscapes.class).getWrappedLogger();
     private final int[] _asciiEscapes;
 
     public CustomerCharacterEscapes() {

@@ -1,12 +1,26 @@
 package com.wendy.svm;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 public class LibSVMTest {
 
+    public static final String  UCI_breast_cancer_tra;
+    public static final String  UCI_breast_cancer_test;
+    public static final String  UCI_breast_cancer_result;
+    public static final String  UCI_breast_cancer_tra_model;
+
     public static List<Result> results = new ArrayList<Result>();
+
+    static {
+        String resources = LibSVMTest.class.getResource("/").getPath();
+        UCI_breast_cancer_tra = resources+File.separator+"/svm_files/UCI-breast-cancer-tra";
+        UCI_breast_cancer_test = resources+File.separator+"/svm_files/UCI-breast-cancer-test";
+        UCI_breast_cancer_result = resources+File.separator+"/svm_files/UCI-breast-cancer-result";
+        UCI_breast_cancer_tra_model = resources+File.separator+"/svm_files/UCI-breast-cancer-tra.model";
+    }
 
 	/**JAVA test code for LibSVM
 	 * @author yangliu
@@ -16,9 +30,7 @@ public class LibSVMTest {
 	 */
 	public static void main(String[] args) throws Exception {
 //        fun_c();
-//        gamma_c();
-
-        System.out.println(LibSVMTest.class.getResource("/"));
+        gamma_c();
 //        run3();
 
     }
@@ -47,15 +59,14 @@ public class LibSVMTest {
     }
 
     public static Result run(String fun,String C) throws IOException {
-        String[] trainArgs = {"-t",fun,"-c",C,"D:\\workspace\\dandan\\data_file\\UCI-breast-cancer-tra"};//directory of training file
+        String[] trainArgs = {"-t",fun,"-c",C,LibSVMTest.UCI_breast_cancer_tra};//directory of training file
         String modelFile = SvmTrain.main(trainArgs);
-        String[] testArgs = {"D:\\workspace\\dandan\\data_file\\UCI-breast-cancer-test", modelFile, "D:\\workspace\\dandan\\data_file\\UCI-breast-cancer-result"};//directory of test file, model file, result file
+        String[] testArgs = {LibSVMTest.UCI_breast_cancer_test, modelFile, LibSVMTest.UCI_breast_cancer_result};//directory of test file, model file, result file
         Double accuracy = SvmPredict.main(testArgs);
         System.out.println("SVM Classification is done! The accuracy is " + accuracy);
 
         //Test for cross validation
-        String path3 = "D:\\workspace\\dandan\\data_file\\UCI-breast-cancer-tra";
-        String[] crossValidationTrainArgs = {"-v", "10",path3 };// 10 fold cross validation
+        String[] crossValidationTrainArgs = {"-v", "10",LibSVMTest.UCI_breast_cancer_tra };// 10 fold cross validation
         modelFile = SvmTrain.main(crossValidationTrainArgs);
         System.out.print("Cross validation is done! The modelFile is " + modelFile);
         return new Result(fun,C,accuracy+"");
@@ -78,7 +89,7 @@ public class LibSVMTest {
                 LibSVMTest.results.add(run2(f, c));
             }
         }
-        System.out.println("[");
+        System.out.print("\n[");
         for(Result result : LibSVMTest.results){
             System.out.print("["+result.getC()+","+result.getFunName()+","+result.getAccuracy()+"],");
         }
@@ -86,32 +97,17 @@ public class LibSVMTest {
     }
 
     public static Result run2(String gamma,String C) throws IOException {
-        String[] trainArgs = {"-g",gamma,"-t","1","-c",C,"D:\\workspace\\dandan\\data_file\\UCI-breast-cancer-tra"};//directory of training file
+        String[] trainArgs = {"-g",gamma,"-t","1","-c",C,LibSVMTest.UCI_breast_cancer_tra};//directory of training file
         String modelFile = SvmTrain.main(trainArgs);
-        String[] testArgs = {"D:\\workspace\\dandan\\data_file\\UCI-breast-cancer-test", modelFile, "D:\\workspace\\dandan\\data_file\\UCI-breast-cancer-result"};//directory of test file, model file, result file
+        String[] testArgs = {LibSVMTest.UCI_breast_cancer_test, modelFile, LibSVMTest.UCI_breast_cancer_result};//directory of test file, model file, result file
         Double accuracy = SvmPredict.main(testArgs);
         System.out.println("SVM Classification is done! The accuracy is " + accuracy);
 
         //Test for cross validation
-        String path3 = "D:\\workspace\\dandan\\data_file\\UCI-breast-cancer-tra";
-        String[] crossValidationTrainArgs = {"-v", "10",path3 };// 10 fold cross validation
+        String[] crossValidationTrainArgs = {"-v", "10",LibSVMTest.UCI_breast_cancer_tra };// 10 fold cross validation
         modelFile = SvmTrain.main(crossValidationTrainArgs);
         System.out.print("Cross validation is done! The modelFile is " + modelFile);
         return new Result(gamma,C,accuracy+"");
-    }
-
-    public static void run3() throws IOException {
-        String[] trainArgs = {"D:\\workspace\\dandan\\data_file\\UCI-breast-cancer-tra"};//directory of training file
-        String modelFile = SvmTrain.main(trainArgs);
-        String[] testArgs = {"D:\\workspace\\dandan\\data_file\\UCI-breast-cancer-test", modelFile, "D:\\workspace\\dandan\\data_file\\UCI-breast-cancer-result"};//directory of test file, model file, result file
-        Double accuracy = SvmPredict.main(testArgs);
-        System.out.println("SVM Classification is done! The accuracy is " + accuracy);
-
-        //Test for cross validation
-        String path3 = "D:\\workspace\\dandan\\data_file\\UCI-breast-cancer-tra";
-        String[] crossValidationTrainArgs = {"-v", "10",path3 };// 10 fold cross validation
-        modelFile = SvmTrain.main(crossValidationTrainArgs);
-        System.out.print("Cross validation is done! The modelFile is " + modelFile);
     }
 
 }

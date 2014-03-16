@@ -1,0 +1,51 @@
+<!doctype html>
+<html>
+	<head>
+		<title>Line Chart</title>
+		<script src="../Chart.js"></script>
+		<meta name = "viewport" content = "initial-scale = 1, user-scalable = no">
+		<style>
+			canvas{
+			}
+		</style>
+	</head>
+	<body>
+		<canvas id="canvas" height="450" width="600"></canvas>
+
+
+	<script>
+		var datas= [[70,0.00390625,0.3076923076923077],[70,0.0078125,0.717948717948718],[70,0.015625,0.6923076923076923],[70,0.03125,0.717948717948718],[70,0.0625,0.9230769230769231],[70,0.125,0.6923076923076923],[70,0.25,0.8461538461538461],[70,0.5,0.6923076923076923]];
+		console.log(datas);
+		var funsName = ["Linear","Polynomial","Radial","Sigmoid"]
+		var lables = [];
+		var funs = [];
+		for(var i=0;i<datas.length;i++){
+			var item = datas[i];
+			lables.push(item[1]);
+			funs.push(item[2]);
+		}
+		console.log(funs);
+		//var colors = ["rgba(13,67,89,1)","rgba(218,67,4,1)","rgba(5,89,220,1)","rgba(23,76,12,1)"];
+		var colors = ["red","blue","yellow","black","rgba(13,67,89,1)","rgba(218,67,40,1)","rgba(52,89,220,1)","rgba(23,76,12,1)","rgba(134,67,89,1)","rgba(218,67,41,1)"];
+		var datasets = [{
+				strokeColor : colors[0],
+				pointColor : colors[0],
+				pointStrokeColor : colors[0],
+				data : funs
+			}];
+		var lineChartData = {
+			labels : lables,
+			datasets : datasets
+		}
+
+		var options = {
+			datasetFill:false,
+			bezierCurve :false,
+			datasetStrokeWidth:2
+		};
+
+	var myLine = new Chart(document.getElementById("canvas").getContext("2d")).Line(lineChartData,options);
+	
+	</script>
+	</body>
+</html>

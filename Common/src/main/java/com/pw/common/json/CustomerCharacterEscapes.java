@@ -1,9 +1,7 @@
 package com.pw.common.json;
 
-import com.pw.common.logging.LogWrapper;
 import org.codehaus.jackson.SerializableString;
 import org.codehaus.jackson.io.CharacterEscapes;
-import org.slf4j.Logger;
 
 /**
  * Created with IntelliJ IDEA.

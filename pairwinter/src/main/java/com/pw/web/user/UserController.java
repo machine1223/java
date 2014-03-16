@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+
 /**
  * Created with IntelliJ IDEA.
  * User: damon
@@ -22,7 +23,6 @@ import java.util.List;
 @Controller
 @RequestMapping("/user")
 public class UserController {
-
     @RequestMapping(method = RequestMethod.GET)
     public String list(Model model, HttpServletRequest request) {
         model.asMap().clear();

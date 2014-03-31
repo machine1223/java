@@ -1,5 +1,4 @@
 'use strict';
-
 angular.module('siteApp')
   .controller('UserCtrl', function ($scope) {
     $scope.awesomeThings = [

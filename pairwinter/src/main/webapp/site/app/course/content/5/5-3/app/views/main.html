@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html> <!-- Do not add ng-app here as we bootstrap AngularJS manually-->
+<head>
+    <title>My AngularJS App</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" type="text/css" href="../bower_components/bootstrap-sass/bootstrap-2.3.2.css">
+    <link rel="stylesheet" type="text/css" href="../bower_components/bootstrap-sass/bootstrap-responsive-2.3.2.css">
+</head>
+<body class="home-page" ng-app="mytodoApp">
+<a href="#/todo">todo</a>
+<div ng-view ></div>
+<script src="../bower_components/requirejs/require.js"></script>
+<script src="../scripts/main.js"></script>
+<script src="../scripts/views/todo/view-todo.js"></script>
+</body>
+</html>

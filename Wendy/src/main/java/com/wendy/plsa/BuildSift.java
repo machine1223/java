@@ -3,17 +3,29 @@ package com.wendy.plsa;
 import com.alibaba.simpleimage.analyze.sift.SIFT;
 import com.alibaba.simpleimage.analyze.sift.io.KDFeaturePointListInfo;
 import com.alibaba.simpleimage.analyze.sift.io.KDFeaturePointWriter;
+<<<<<<< HEAD
 import com.alibaba.simpleimage.analyze.sift.match.Match;
 import com.alibaba.simpleimage.analyze.sift.match.MatchKeys;
 import com.alibaba.simpleimage.analyze.sift.render.RenderImage;
 import com.alibaba.simpleimage.analyze.sift.scale.KDFeaturePoint;
 import org.apache.commons.lang.StringUtils;
+=======
+import com.alibaba.simpleimage.analyze.sift.render.RenderImage;
+import com.alibaba.simpleimage.analyze.sift.scale.KDFeaturePoint;
+>>>>>>> a4e59c9fccd17b90c54d82074778bb341bad3d7a
 import org.apache.log4j.Logger;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
+<<<<<<< HEAD
 import java.io.*;
 import java.util.ArrayList;
+=======
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+>>>>>>> a4e59c9fccd17b90c54d82074778bb341bad3d7a
 import java.util.List;
 
 /**
@@ -25,6 +37,7 @@ import java.util.List;
  */
 public class BuildSift {
     private final static Logger logger = Logger.getLogger(BuildSift.class);
+<<<<<<< HEAD
     public final static String resources = BuildSift.class.getResource("/").getPath();
     public final static String filename = "D:/workspace/dandan/result/plsa/sift/sift_result";
     public static void main(String[] args) throws Exception{
@@ -91,16 +104,29 @@ public class BuildSift {
         FileWriter fw =  new FileWriter(f);
         fw.write("");
         fw.close();
+=======
+    public static void main(String[] args) throws Exception{
+        String resources = BuildSift.class.getResource("/").getPath();
+//        String filename = resources+File.separator+"/plsa/sift_result";
+        String filename = "/home/damon/tmp/sift_result";
+>>>>>>> a4e59c9fccd17b90c54d82074778bb341bad3d7a
         ObjectOutputStream out = null;
         try {
             File imagesDirectory = new File(resources+File.separator+"/plsa/images");
             File[] images = imagesDirectory.listFiles();
             for (File image : images) {
+<<<<<<< HEAD
                 out = new ObjectOutputStream(new FileOutputStream(filename,true));
                 KDFeaturePointWriter.writeComplete(out,BuildSift.parseImg(image));
             }
         } catch (Exception e) {
             e.printStackTrace();
+=======
+                out = new ObjectOutputStream(new FileOutputStream(filename));
+                KDFeaturePointWriter.writeComplete(out,BuildSift.parseImg(image));
+            }
+        } catch (Exception e) {
+>>>>>>> a4e59c9fccd17b90c54d82074778bb341bad3d7a
             logger.equals(e.getMessage());
         } finally {
             if (out != null) {

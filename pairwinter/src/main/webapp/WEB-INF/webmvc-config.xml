@@ -21,7 +21,6 @@
     </mvc:annotation-driven>
 
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources -->
-	<mvc:resources location="site/app/bower_components/" mapping="/bower_components/**" cache-period="0"/>
 	<mvc:resources location="site/app/images/" mapping="/images/**" cache-period="0"/>
 	<mvc:resources location="site/app/scripts/" mapping="/scripts/**" cache-period="0"/>
 	<mvc:resources location="site/app/styles/" mapping="/styles/**" cache-period="0"/>

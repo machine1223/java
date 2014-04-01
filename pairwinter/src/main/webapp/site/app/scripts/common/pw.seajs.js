@@ -10,7 +10,7 @@
     seajs.config({
         plugins:['text'],
         paths:{
-            plugins:staticResources+'/site/app/bower_components',
+            components:staticResources+'/site/app/scripts/components',
             jsviews:staticResources+'/site/app/views',
             tplviews:staticResources+'/site/app/views'
         },

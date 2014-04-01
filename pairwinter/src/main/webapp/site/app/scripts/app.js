@@ -9,11 +9,11 @@ angular.module('siteApp', [
   .config(function ($routeProvider) {
     $routeProvider
       .when('/', {
-        templateUrl: 'views/main.html',
+        templateUrl: '/static/views/main.html',
         controller: 'MainCtrl'
       })
       .when('/role', {
-        templateUrl: 'views/role.html',
+        templateUrl: '/static/views/role.html',
         controller: 'RoleCtrl'
       })
       .otherwise({

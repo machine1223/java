@@ -7,11 +7,11 @@
     <meta name="Author" content="">
     <meta name="Keywords" content="">
     <meta name="Description" content="">
-    <link rel="stylesheet" type="text/css" href="/styles/js-course.css">
-    <link rel="stylesheet" type="text/css" href="/scripts/components/syntax-highlighter/Styles/SyntaxHighlighter.css"><script type="text/javascript" src="/scripts/components/jquery/jquery.js"></script>
-    <script type="text/javascript" src="/scripts/components/syntax-highlighter/Scripts/shCore.js"></script>
-    <script type="text/javascript" src="/scripts/components/syntax-highlighter/Scripts/shBrushJScript.js"></script>
-    <script type="text/javascript" src="/scripts/components/angular/angular.js"></script>
+    <link rel="stylesheet" type="text/css" href="/static/styles/js-course.css">
+    <link rel="stylesheet" type="text/css" href="/static/scripts/components/syntax-highlighter/Styles/SyntaxHighlighter.css"><script type="text/javascript" src="/static/scripts/components/jquery/jquery.js"></script>
+    <script type="text/javascript" src="/static/scripts/components/syntax-highlighter/Scripts/shCore.js"></script>
+    <script type="text/javascript" src="/static/scripts/components/syntax-highlighter/Scripts/shBrushJScript.js"></script>
+    <script type="text/javascript" src="/static/scripts/components/angular/angular.js"></script>
     <script type="text/javascript" src="/course/utils.js"></script>
     <script type="text/javascript" src="/course/ready.js"></script>
     <style type="text/css">
@@ -58,14 +58,14 @@
                             <th style="width: 200px">JS源文件</th>
                             <td>
                                 看看<code>app/scripts</code>目录. 这里是你所有的JS源文件所在目录. 一个主文件来给你的应用程序设置Angular模块和路由.<br>
-                                此外, 这里还有一个单独的文件夹<code>--app/scripts/controller--</code>这里面是各个控制器. 控制器提供行为和发布数据到作用域中, 然后显示在视图中. 通常, 它们与视图都是一一对应的.<br>
+                                此外, 这里还有一个单独的文件夹<code>--app/static/scripts/controller--</code>这里面是各个控制器. 控制器提供行为和发布数据到作用域中, 然后显示在视图中. 通常, 它们与视图都是一一对应的.<br>
                                 指令, 过滤器和服务也可以在<code>app/scripts</code>下面找到, 不管是否优雅和复杂, 作为一个完整的文件(directives.js, filters.js, services.js)或者单个的都行. <br>
                             </td>
                         </tr>
                         <tr>
                             <th>Angular HTML模板文件</th>
                             <td>
-                                现在, 使用Yeoman创建的每一个AngularJS局部模板都可以在<code>app/views</code>目录中找到. 这是映射到大多数<code>app/scripts/controller</code>目录中. <br>
+                                现在, 使用Yeoman创建的每一个AngularJS局部模板都可以在<code>app/views</code>目录中找到. 这是映射到大多数<code>app/static/scripts/controller</code>目录中. <br>
                                 还有另外一个重要的Angular模板文件, 就是主要的app/index.html. 这用户获取AngularJS源文件, 也是你为应用程序创建的任意源文件. <br>
                                 如果你最终会创建一个新的JS文件, 要确保把它添加到index.html中, 同时还要更新的主模块和路由(Yeoman也会为你做这些).
                             </td>
@@ -73,7 +73,7 @@
                         <tr>
                             <th>JS库依赖</th>
                             <td>
-                                Yeoman在<code>app/scripts/vendor</code>中为你提供了所有的JS源文件依赖. 想在应用程序中使用Underscore和SocketIO?  <br>
+                                Yeoman在<code>app/static/scripts/vendor</code>中为你提供了所有的JS源文件依赖. 想在应用程序中使用Underscore和SocketIO?  <br>
                                 没问题--将依赖添加到vendor目录中(还有你的index.html), 并开始在你的用用程序中引用它.
                             </td>
                         </tr>
@@ -602,7 +602,7 @@
                             <td>
                                 bootstrap它等到DOM准备就绪(这里使用的RequireJS的插件`domReady`), 然后告诉AngularJS继续执行, 这是很好的.
                                 <pre name="code" class="js">
-                                    // The app/scripts/bootstrap.js file which tells AngularJS
+                                    // The app/static/scripts/bootstrap.js file which tells AngularJS
                                     // to go ahead and bootstrap when the DOM is loaded
                                     define(['angular', 'domReady'], function(angular, domReady) {
                                         domReady(function() {
@@ -641,7 +641,7 @@
                             <td>
                                 我们来看看`scripts/controllers/controllers.js`文件, 这看起来几乎与`scripts/directives/directives.js`, `scripts/filters/filters.js`和`js/services/services.js`一模一样:
                                 <pre name="code" class="js">
-                                    // The app/scripts/bootstrap.js file which tells AngularJS
+                                    // The app/static/scripts/bootstrap.js file which tells AngularJS
                                     // to go ahead and bootstrap when the DOM is loaded
                                     define(['angular'], function(angular){
                                         'use strict';

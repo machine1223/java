@@ -5,7 +5,7 @@
             b:'./b',
             c:'./c',
             def:'./def',
-            'jquery':'/scripts/components/jquery/jquery'
+            'jquery':'/static/scripts/components/jquery/jquery'
         }
     });
 })();

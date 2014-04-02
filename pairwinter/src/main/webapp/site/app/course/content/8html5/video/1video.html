@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+        <script type="text/javascript" src="/static/scripts/components/seajs/sea.js"></script>
+        <script type="text/javascript" src="/static/scripts/common/pw.seajs.js"></script>
+    </head>
+    <body>
+        <video id="video" src="one.flv" controls="controls" loop="loop"></video>
+    </body>
+    <script type="text/javascript">
+        seajs.use(['jquery'],function($){
+            $('#video').bind("ended",function(){
+                console.log("ended");
+            }).bind("loadedmetadata",function(){
+                console.log("loadedmetadata");
+            }).bind("canplaythrough",function(){
+                console.log("canplaythrough");
+            }).bind("abort",function(){
+                console.log("abort");
+            }).bind("error",function(){
+                console.log("error");
+            }).bind("emptied",function(){
+                console.log("emptied");
+            }).bind("pause",function(){
+                console.log("pause");
+            }).bind("play",function(){
+                console.log("play");
+            }).bind("playing",function(){
+                console.log("playing");
+            }).bind("timeupdate",function(){
+                console.log("timeupdate");
+            })
+        });
+    </script>
+</html>

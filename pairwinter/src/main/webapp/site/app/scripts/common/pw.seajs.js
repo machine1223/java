@@ -6,16 +6,17 @@
  * To change this template use File | Settings | File Templates.
  */
 (function(){
-    var staticResources = window.location.host+'/statics';
+    var staticResources = '/static/';
     seajs.config({
         plugins:['text'],
         paths:{
-            components:staticResources+'/site/app/scripts/components',
-            jsviews:staticResources+'/site/app/views',
-            tplviews:staticResources+'/site/app/views'
+            components:staticResources+'scripts/components',
+            services:staticResources+'scripts/services',
+            controllers:staticResources+'scripts/controllers',
+            tpl:staticResources+'views'
         },
         alias:{
-
+            'jquery':'components/jquery/jquery'
         },
         map:[
             [/.js$/,'.js?version='],

@@ -11,6 +11,7 @@
         plugins:['text'],
         paths:{
             components:staticResources+'scripts/components',
+            content:'/course/content',
             services:staticResources+'scripts/services',
             controllers:staticResources+'scripts/controllers',
             tpl:staticResources+'views'

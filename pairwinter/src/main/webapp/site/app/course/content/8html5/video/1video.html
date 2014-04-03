@@ -6,31 +6,18 @@
         <script type="text/javascript" src="/static/scripts/common/pw.seajs.js"></script>
     </head>
     <body>
-        <video id="video" src="one.flv" controls="controls" loop="loop"></video>
+        <video id="video" src="one.flv?t=2" controls="controls" loop="loop"></video>
+        <!--<video id="video2" src="love.mp3" controls="controls" loop="loop"></video>-->
+        <!--<audio id="audio" src="http://localhost:8084/course/content/8html5/video/love.mp3" controls="controls" autoplay="autoplay"></audio>-->
+        <!--<audio id="audio2" name="audio2" controls="controls">-->
+            <!--<source src="thh.ogg" type="audio/ogg">-->
+        <!--</audio>-->
+        <!--<audio id="audio3" src="http://www.feelcss.com/demo/html5-player/music/thh.ogg" controls="controls"></audio>-->
     </body>
     <script type="text/javascript">
-        seajs.use(['jquery'],function($){
-            $('#video').bind("ended",function(){
-                console.log("ended");
-            }).bind("loadedmetadata",function(){
-                console.log("loadedmetadata");
-            }).bind("canplaythrough",function(){
-                console.log("canplaythrough");
-            }).bind("abort",function(){
-                console.log("abort");
-            }).bind("error",function(){
-                console.log("error");
-            }).bind("emptied",function(){
-                console.log("emptied");
-            }).bind("pause",function(){
-                console.log("pause");
-            }).bind("play",function(){
-                console.log("play");
-            }).bind("playing",function(){
-                console.log("playing");
-            }).bind("timeupdate",function(){
-                console.log("timeupdate");
-            })
+        seajs.use(['jquery',"content/8html5/video/video_audio"],function($,videoAudio){
+            videoAudio.bindVideoEvent($);
+            videoAudio.bindAudioEvent($);
         });
     </script>
 </html>

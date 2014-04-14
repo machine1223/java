@@ -28,7 +28,7 @@ object Ex6SIFT extends App {
     val nFeatures = 0
     val nOctaveLayers = 3
     val contrastThreshold = 0.03
-    val edgeThreshold = 10
+    val edgeThreshold = 10;
     val sigma = 1.6
     val sift = new SIFT(nFeatures, nOctaveLayers, contrastThreshold, edgeThreshold, sigma)
     sift.detect(image, null, keyPoints)
@@ -45,9 +45,9 @@ object Ex6SIFT extends App {
 
     // Draw keyPoints
     val featureImage = IplImage.create(cvGetSize(image), image.depth(), 3)
-    drawKeypoints(image, keyPoints, featureImage, CvScalar.WHITE, DrawMatchesFlags.DEFAULT)
+//    drawKeypoints(image, keyPoints, featureImage, CvScalar.WHITE, DrawMatchesFlags.DEFAULT)
 //      drawKeypoints(image, keyPoints, featureImage, CvScalar.WHITE, DrawMatchesFlags.DRAW_OVER_OUTIMG)
-//      drawKeypoints(image, keyPoints, featureImage, CvScalar.WHITE, DrawMatchesFlags.DRAW_RICH_KEYPOINTS)
+      drawKeypoints(image, keyPoints, featureImage, CvScalar.WHITE, DrawMatchesFlags.DRAW_RICH_KEYPOINTS)
 //        drawKeypoints(image, keyPoints, featureImage, CvScalar.WHITE, DrawMatchesFlags.NOT_DRAW_SINGLE_POINTS)
 //  featureImage.
   show(featureImage, "SIFT Features")

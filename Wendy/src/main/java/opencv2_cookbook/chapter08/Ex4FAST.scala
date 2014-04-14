@@ -16,7 +16,8 @@ import opencv2_cookbook.OpenCVUtils._
 object Ex4FAST extends App {
 
     // Read input image
-    val image = loadAndShowOrExit(new File("data/church01.jpg"))
+//    val image = loadAndShowOrExit(new File("data/church01.jpg"))
+    val image = loadAndShowOrExit(new File("data/dandan/23.jpg"))
 
     // Detect FAST features
     val ffd = new FastFeatureDetector(

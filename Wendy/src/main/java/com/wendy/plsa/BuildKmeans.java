@@ -21,7 +21,9 @@ public class BuildKmeans {
         opencv_core.cvSetZero(clusters);
         opencv_core.cvSetZero(centers);
         for (KDFeaturePoint feature : features) {
-            samples.data_i().put(feature.descriptor);
+            for(int i=0;i<feature.descriptor.length;i++){
+                samples.data_i().put(feature.descriptor[i]);
+            }
         }
         double[] doubles = new double[]{};
         opencv_core.cvKMeans2(samples, 10, clusters, opencv_core.cvTermCriteria(opencv_core.CV_TERMCRIT_EPS, 10, 1.0),

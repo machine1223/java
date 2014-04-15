@@ -22,8 +22,10 @@ object Ex7DescribingSURF extends App {
 
     // Read input image
     val images = Array(
-        loadAndShowOrExit(new File("data/dandan/2.bmp")),
-        loadAndShowOrExit(new File("data/dandan/12346.bmp"))
+//        loadAndShowOrExit(new File("data/dandan/2.bmp")),
+//      loadAndShowOrExit(new File("data/dandan/12346.bmp"))
+        loadAndShowOrExit(new File("data/church01.jpg")),
+        loadAndShowOrExit(new File("data/church02.jpg"))
     )
 
     // Setup SURF feature detector and descriptor.

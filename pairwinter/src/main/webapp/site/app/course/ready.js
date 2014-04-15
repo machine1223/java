@@ -1,5 +1,4 @@
 (function(){
-    seajs
     if(window._!=undefined && window._.templateSettings){
         _.templateSettings = {
             interpolate: /\<\@\=(.+?)\@\>/g,

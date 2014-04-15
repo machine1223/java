@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:mongo="http://www.springframework.org/schema/data/mongo"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+       xsi:schemaLocation="
+     http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+     http://www.springframework.org/schema/data/mongo http://www.springframework.org/schema/data/mongo/spring-mongo-1.0.xsd
+     http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+     http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-3.0.xsd">
+
+    <bean class="com.everbridge.platform.common.config.SystemPropertyPlaceholderConfigurer">
+        <property name="systemPropertiesModeName" value="SYSTEM_PROPERTIES_MODE_OVERRIDE" />
+        <property name="ignoreResourceNotFound" value="true" />
+        <property name="propertyName" value="upload.properties" />
+        <property name="locations">
+            <list>
+                <value>classpath:geo_mybatis.properties</value>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+        <property name="driverClassName" value="${datasource.driverClassName}"/>
+        <property name="url" value="${datasource.url}"/>
+        <property name="username" value="${datasource.username}"/>
+        <property name="password" value="${datasource.password}"/>
+    </bean>
+
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource" />
+        <property name="configLocation" value="classpath:Configuration.xml" />
+        <property name="mapperLocations" value="classpath*:com/everbridge/platform/*/dao/xml/*.xml"/>
+    </bean>
+
+    <bean id="batchSQLSession" class="org.mybatis.spring.SqlSessionTemplate">
+        <constructor-arg index="0" ref="sqlSessionFactory" />
+        <constructor-arg index="1" value="BATCH" />
+    </bean>
+
+   
+    <bean id="geoResultDao" class="com.everbridge.platform.gis.dao.mybatis.GeoResultDao">
+		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
+	</bean>
+
+	<bean id="geoAccountDao" class="com.everbridge.platform.gis.dao.mybatis.GeoAccountDao">
+		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
+	</bean>
+	<bean id="geoTaskDao" class="com.everbridge.platform.gis.dao.mybatis.GeoTaskDao">
+		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
+	</bean>
+	<bean id="geoJobDao" class="com.everbridge.platform.gis.dao.mybatis.GeoJobDao">
+		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
+	</bean>
+	<bean id="geocodeStatusDao" class="com.everbridge.platform.gis.dao.mybatis.GeocodeStatusDao">
+		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
+	</bean>
+	
+	<bean id="gisThreadExecutor"
+		class="org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor">
+		<property name="corePoolSize" value="50" />
+		<property name="maxPoolSize" value="100" />
+		<property name="queueCapacity" value="250" />
+	</bean>
+
+	<bean id="gisService" class="com.everbridge.platform.gis.service.impl.mybatis.GisServiceImpl">
+		<property name="geoResultDao" ref="geoResultDao" />
+		<property name="geoAccountDao" ref="geoAccountDao" />
+		<property name="geoTaskDao" ref="geoTaskDao" />
+		<property name="geoJobDao" ref="geoJobDao" />
+		<property name="geocodeStatusDao" ref="geocodeStatusDao" />
+		<property name="gisThreadExecutor" ref="gisThreadExecutor" />
+		<property name="bingApi">
+			<value>${bing.api}</value>
+		</property>
+		<property name="bingKey">
+			<value>${bing.output}</value>
+		</property>
+		<property name="bingApiEnd">
+			<value>${bing.key}</value>
+		</property>
+		<property name="geoTaskPath">
+			<value>${geotask.path}</value>
+		</property>
+		<property name="timerStrategy">
+			<value>${geotask.isTimerStrategy}</value>
+		</property>
+		<property name="cacheSearch">
+			<value>${bing.isCacheSearch}</value>
+		</property>
+		<property name="bingRequestLimit">
+			<value>${bing.bingRequestLimit}</value>
+		</property>
+		<property name="geoTasklimit">
+			<value>${geoTask.geoTasklimit}</value>
+		</property>
+		<property name="minimumConfidence">
+			<value>${geoTask.minimumConfidence}</value>
+		</property>
+        <property name="shapefilesUploadPath">
+            <value>/home/vincent/temp</value>
+        </property>
+        <property name="shapefilesExportPath">
+            <value>/home/vincent/temp</value>
+        </property>
+        <property name="taskCountLimit">
+            <value>${geoJob.taskCountLimit}</value>
+        </property>
+        <property name="maxTryCount">
+            <value>10</value>
+        </property>
+        <property name="maxTryUploadCount">
+            <value>3</value>
+        </property>
+	</bean>
+    <mongo:mongo host="127.0.0.1" port="27017" />
+    <mongo:db-factory dbname="center0" mongo-ref="mongo" />
+    <mongo:mapping-converter />
+
+    <bean class="org.springframework.data.mongodb.core.MongoTemplate" id="mongoTemplate">
+        <constructor-arg ref="mongoDbFactory"/>
+        <constructor-arg name="mongoConverter" ref="mappingConverter"/>
+    </bean>
+
+    <bean id="mongoBaseTemplate" class="com.everbridge.platform.framework.persistence.dao.mongo.MongoBaseDao"/>
+
+    
+</beans>

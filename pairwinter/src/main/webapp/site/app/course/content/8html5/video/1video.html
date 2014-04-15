@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+        <script type="text/javascript" src="/static/scripts/components/seajs/sea.js"></script>
+        <script type="text/javascript" src="/static/scripts/common/pw.seajs.js"></script>
+    </head>
+    <body>
+        <video id="video" src="one.flv?t=2" controls="controls" loop="loop"></video>
+        <!--<video id="video2" src="love.mp3" controls="controls" loop="loop"></video>-->
+        <!--<audio id="audio" src="http://localhost:8084/course/content/8html5/video/love.mp3" controls="controls" autoplay="autoplay"></audio>-->
+        <!--<audio id="audio2" name="audio2" controls="controls">-->
+            <!--<source src="thh.ogg" type="audio/ogg">-->
+        <!--</audio>-->
+        <!--<audio id="audio3" src="http://www.feelcss.com/demo/html5-player/music/thh.ogg" controls="controls"></audio>-->
+    </body>
+    <script type="text/javascript">
+        seajs.use(['jquery',"content/8html5/video/video_audio"],function($,videoAudio){
+            videoAudio.bindVideoEvent($);
+            videoAudio.bindAudioEvent($);
+        });
+    </script>
+</html>

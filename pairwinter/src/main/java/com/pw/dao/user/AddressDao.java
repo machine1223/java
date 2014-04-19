@@ -1,5 +1,7 @@
 package com.pw.dao.user;
 
+import com.pw.dao.BaseDao;
+
 /**
  * Created with IntelliJ IDEA.
  * User: damon
@@ -7,5 +9,5 @@ package com.pw.dao.user;
  * Time: 2:35 PM
  * To change this template use File | Settings | File Templates.
  */
-public class AddressDao {
+public class AddressDao extends BaseDao{
 }

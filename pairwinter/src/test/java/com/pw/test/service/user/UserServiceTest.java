@@ -1,10 +1,12 @@
-package com.pw.test.dao.user;
+package com.pw.test.service.user;
 
 import com.google.appengine.api.datastore.*;
 import com.google.appengine.tools.development.testing.LocalDatastoreServiceTestConfig;
 import com.google.appengine.tools.development.testing.LocalServiceTestHelper;
 import com.pw.dao.user.UserDao;
 import com.pw.model.user.User;
+import com.pw.service.api.user.UserService;
+import com.pw.service.impl.user.UserServiceImpl;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -19,16 +21,16 @@ import static junit.framework.Assert.assertNotNull;
 /**
  * Created with IntelliJ IDEA.
  * User: damon
- * Date: 4/14/14
- * Time: 2:44 PM
+ * Date: 4/15/14
+ * Time: 5:59 PM
  * To change this template use File | Settings | File Templates.
  */
-public class UserTest {
+public class UserServiceTest {
     protected static ApplicationContext applicationContext;
-    protected static UserDao userDao;
+    protected static UserService userService;
     static{
         applicationContext = new ClassPathXmlApplicationContext("applicationContext.xml");
-        userDao = (UserDao)applicationContext.getBean("userDao");
+        userService = (UserServiceImpl)applicationContext.getBean("userService");
     }
 
     private final LocalServiceTestHelper helper = new LocalServiceTestHelper((new LocalDatastoreServiceTestConfig()));
@@ -42,18 +44,15 @@ public class UserTest {
         helper.tearDown();
     }
 
-    private void doTest(){
-        DatastoreService datastoreService = DatastoreServiceFactory.getDatastoreService();
-        assertEquals(0,datastoreService.prepare(new Query("damon")).countEntities(FetchOptions.Builder.withLimit(10)));
-        datastoreService.put(new Entity("damon"));
-        datastoreService.put(new Entity("damon"));
-        assertEquals(2, datastoreService.prepare(new Query("damon")).countEntities(FetchOptions.Builder.withLimit(10)));
-    }
-
     @Test
     public void testAddUser() throws IOException {
         User user = new User("damon","liu",29,"male",null);
         user.setFirstName("damon");
-        assertNotNull(userDao.addUser(user));
+        assertNotNull(userService.addUser(user));
+    }
+
+    public void listUser() throws IOException{
+        this.testAddUser();
+        userService.listUser(null,null,null,null);
     }
 }

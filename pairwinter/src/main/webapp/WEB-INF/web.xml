@@ -15,12 +15,10 @@
         <param-value>true</param-value>
     </context-param>
 
-    <!--<context-param>-->
-    <!--<param-name>contextConfigLocation</param-name>-->
-    <!--<param-value>-->
-    <!--classpath*:config/*.xml-->
-    <!--</param-value>-->
-    <!--</context-param>-->
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>classpath*:config/*.xml</param-value>
+    </context-param>
     <filter>
         <filter-name>HttpIfModifiedSinceFix</filter-name>
         <filter-class>com.pw.filter.HttpIfModifiedSinceFix</filter-class>

@@ -50,5 +50,5 @@ object Ex6SIFT extends App {
       drawKeypoints(image, keyPoints, featureImage, CvScalar.WHITE, DrawMatchesFlags.DRAW_RICH_KEYPOINTS)
 //        drawKeypoints(image, keyPoints, featureImage, CvScalar.WHITE, DrawMatchesFlags.NOT_DRAW_SINGLE_POINTS)
 //  featureImage.
-  show(featureImage, "SIFT Features")
+    show(featureImage, "SIFT Features")
 }

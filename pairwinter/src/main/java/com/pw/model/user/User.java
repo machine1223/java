@@ -12,6 +12,9 @@ import java.util.List;
  */
 @PersistenceCapable(identityType = IdentityType.APPLICATION)
 public class User {
+    public static enum Column{
+        firstName,lastName
+    };
     @PrimaryKey
     @Persistent(valueStrategy = IdGeneratorStrategy.IDENTITY)
     private Long id;
@@ -23,7 +26,7 @@ public class User {
     private int age;
     @Persistent
     private String gender;
-    @Persistent
+    @NotPersistent
     private List<Address> addressList;
 
     public User(String firstName, String lastName, int age, String gender, List<Address> addressList) {

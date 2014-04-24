@@ -11,6 +11,8 @@ import com.googlecode.javacv.cpp.opencv_features2d._
 import com.googlecode.javacv.cpp.opencv_nonfree._
 import java.io.File
 import opencv2_cookbook.OpenCVUtils._
+import com.wendy.plsa.edu.{Clusters, KMeansClusterer}
+import com.googlecode.javacv.cpp.opencv_core
 
 
 /**
@@ -32,7 +34,16 @@ object Ex6SIFT extends App {
     val sigma = 1.6
     val sift = new SIFT(nFeatures, nOctaveLayers, contrastThreshold, edgeThreshold, sigma)
     sift.detect(image, null, keyPoints)
-
+//  val samples: opencv_core.CvMat = opencv_core.CvMat.create(keyPoints.capacity(), 128, opencv_core.CV_32FC1)
+//  var i =0
+//    while (i<keyPoints.capacity()){
+//      keyPoints.
+//      samples.data_fl().pu
+//      i+=1
+//    }
+//  val kMeansClusterer: KMeansClusterer = new KMeansClusterer(10, 1.0, 10, 3)
+//  val clusters1: Clusters = kMeansClusterer.cluster(samples)
+//  opencv_core.cvSave("D:/workspace/dandan/result/plsa/sift/kmeans_result", clusters1.getClusterCenters)
 
     val size =0
     println(keyPoints.capacity())
@@ -50,5 +61,5 @@ object Ex6SIFT extends App {
       drawKeypoints(image, keyPoints, featureImage, CvScalar.WHITE, DrawMatchesFlags.DRAW_RICH_KEYPOINTS)
 //        drawKeypoints(image, keyPoints, featureImage, CvScalar.WHITE, DrawMatchesFlags.NOT_DRAW_SINGLE_POINTS)
 //  featureImage.
-  show(featureImage, "SIFT Features")
+    show(featureImage, "SIFT Features")
 }

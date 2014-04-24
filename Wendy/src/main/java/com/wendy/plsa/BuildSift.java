@@ -28,12 +28,13 @@ public class BuildSift {
     public final static String resources = BuildSift.class.getResource("/").getPath();
     public final static String filename = "D:/workspace/dandan/result/plsa/sift/sift_result";
     public static void main(String[] args) throws Exception{
-        File f = new File(filename);
-        FileWriter fw =  new FileWriter(f);
-        fw.write("");
-        fw.close();
+//        File f = new File(filename);
+//        FileWriter fw =  new FileWriter(f);
+//        fw.write("");
+//        fw.close();
 //        BuildSift.matchTwoImage();
-        parseAllImages();
+//        parseAllImages();
+        parseAllImagesAndPrint();
     }
 
     public static List<KDFeaturePoint> parseAllImages() throws Exception{

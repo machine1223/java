@@ -62,6 +62,7 @@ public class UserDao extends BaseDao{
             q.closeAll();
         }
         return null;
+
     }
 
     public void modifyUser(User user){

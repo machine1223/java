@@ -55,6 +55,8 @@
             var layer = null,mapOptions={
                 projection:"EPSG:900913"
             };
+            mapInfo.tileInfo = false;
+            $('#'+id).before('<h3>'+(mapInfo.tileInfo?'Use Cache Interface':'Use REST Interface')+'</h3>');
             if(mapInfo.tileInfo){
                 layer = new OpenLayers.Layer.ArcGISCache("ArcGISCache",mapUrl,{layerInfo:mapInfo});
                 mapOptions = {
@@ -68,6 +70,7 @@
             }else{
                 layer = new OpenLayers.Layer.ArcGIS93Rest( "ArcGIS Server Layer",mapUrl+"/export");
             }
+
             var map = new OpenLayers.Map(id,mapOptions);
             map.addLayer(layer);
             map.addControl(new OpenLayers.Control.MousePosition() );

@@ -21,7 +21,11 @@
         float: left;
         list-style-type: none;
         margin: 10px 10px;
+        width: 400px;
     }
+    .mapsContainer > li>a{
+         word-break: break-all;
+     }
     .mapsContainer>li>div{
         width: 400px;
         height: 500px;
@@ -42,6 +46,7 @@
     for(var i =0;i<mapUrls.length;i++){
         var id = 'mapContainer'+(i+1), jli = $('<li><div class="smallmap"></div></li>');
         jli.children().attr("id",id);
+        jli.prepend('<a target="_blank" href="'+mapUrls[i]+'">'+mapUrls[i]+'</a>');
         $('#mapsContainer').append(jli);
     };
     var buildMap = function(i){

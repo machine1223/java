@@ -22,7 +22,7 @@
         <property name="persistenceManagerFactory" ref="localPersistenceManagerFactoryBean"/>
     </bean>
 
-    <bean id="pmfProxy" class="org.springframework.orm.jdo.TransactionAwarePersistenceManagerFactoryProxy">
+    <bean id="pmfProxy" class="com.pw.spring.extension.GAETransactionAwarePersistenceManagerFactoryProxy">
         <property name="targetPersistenceManagerFactory" ref="localPersistenceManagerFactoryBean"/>
     </bean>
 

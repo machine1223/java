@@ -25,7 +25,7 @@ public class BuildKmeans {
     private final static String kmeans_result = "D:/workspace/dandan/result/plsa/sift/kmeans_result";
     private final static String norm_result = "D:/workspace/dandan/result/plsa/sift/norm_result";
     public static void main(String[] args) throws Exception{
-        int k = 80;
+        int k = 100;
         List<KDFeaturePoint> features = BuildSift.parseAllImages();
         opencv_core.CvMat samples = opencv_core.CvMat.create(features.size(),128,opencv_core.CV_32FC1);
         int index = 0;
@@ -38,10 +38,8 @@ public class BuildKmeans {
         }
         KMeansClusterer kMeansClusterer = new KMeansClusterer(k,1.0,10,3);
         Clusters clusters1 = kMeansClusterer.cluster(samples);
-//        opencv_core.cvSave(kmeans_result, clusters1.getClusterCenters());
-//        opencv_core.CvFileStorage fileStorage = opencv_core.CvFileStorage.open(kmeans_result,null, opencv_core.CV_STORAGE_READ);
-//        Pointer pointer = opencv_core.cvReadByName(fileStorage, null, "vocabulary", null);
-//        CvMat wordList = new CvMat(pointer);
+        opencv_core.cvSave(kmeans_result, clusters1.getClusterCenters());
+
         CvMat wordList = clusters1.getClusterCenters();
         int wordNum = k;
 
@@ -58,13 +56,16 @@ public class BuildKmeans {
 
         List<List<KDFeaturePoint>> featuresList = BuildSift.parseAllImagesByList();
         FileWriter fw =  new FileWriter(norm_result,false);
+        int featureIndex = 0;
         for (List<KDFeaturePoint> featurePoints : featuresList) {
+            featureIndex++;
             int wordPosition = 0;
             int[] wordTimes = new int[wordNum];
             //初始化词频数组
             for(int i = 0; i < wordNum; i++){
-                wordTimes[i] = 0;
+                wordTimes[i] = 1;
             }
+
             for (KDFeaturePoint feature : featurePoints) {
                 CvMat featureMat =  opencv_core.CvMat.create(1,128,opencv_core.CV_32FC1);
 //                opencv_core.cvSet(featureMat,new double[]);
@@ -87,19 +88,15 @@ public class BuildKmeans {
                 wordTimes[wordPosition]++;
             }
             StringBuffer result = new StringBuffer();
-            int validWordNum =0;
             for(int i=0;i<wordTimes.length;i++){
-                if(wordTimes[i]>0){
-                    validWordNum++;
-                    result.append(i+":"+wordTimes[i]);
-                }
+                result.append(i+":"+wordTimes[i]);
                 if(i == wordTimes.length-1){
                     result.append("\n");
                 }else{
                     result.append(" ");
                 }
             }
-            result.insert(0,validWordNum+"   ");
+            result.insert(0,wordNum+"   ");
             fw.write(result.toString());
         }
         fw.close();

@@ -9,6 +9,6 @@ public class DoPLSA {
     public static void main(String[] args) {
          String norm_result = "D:/workspace/dandan/result/plsa/sift/norm_result";
         ProbabilisticLSA probabilisticLSA = new ProbabilisticLSA();
-        probabilisticLSA.doPLSA(norm_result,5,3);
+        probabilisticLSA.doPLSA(norm_result,10,10);
     }
 }

@@ -2,6 +2,7 @@ package edu.thu.mltool4j.topicmodel.plsa;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.List;
 
 import edu.thu.mltool4j.data.Data;
 import edu.thu.mltool4j.data.Dataset;
@@ -82,6 +83,9 @@ public class ProbabilisticLSA
 			{
 				int w = d.getFeatureAt(position).dim;
 
+                if(list[w] == null){
+                    list[w] = new ArrayList<Posting>();
+                }
 				// add posting
 				list[w].add(new Posting(m, position));
 			}

@@ -47,6 +47,16 @@ public class BuildSift {
         }
         return all;
     }
+    public static List<List<KDFeaturePoint>> parseAllImagesByList() throws Exception{
+        File imagesDirectory = new File(resources+File.separator+"/plsa/images");
+        File[] images = imagesDirectory.listFiles();
+        List<List<KDFeaturePoint>> all = new ArrayList<List<KDFeaturePoint>>();
+        for (File image : images) {
+            List<KDFeaturePoint> testKD = BuildSift.buildKDFeaturePoints(image);
+            all.add(testKD);
+        }
+        return all;
+    }
 
     public static void parseAllImagesAndPrint() throws Exception{
         File imagesDirectory = new File(resources+File.separator+"/plsa/images");

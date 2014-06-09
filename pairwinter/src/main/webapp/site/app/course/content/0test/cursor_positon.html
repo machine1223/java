@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test Cursor Position</title>
+    <script type="text/javascript" src="/static/scripts/components/seajs/sea-debug.js"></script>
+    <script type="text/javascript" src="/static/scripts/common/pw.seajs.js"></script>
+</head>
+<body>
+    <div>select me, I will be bold</div>
+    <div style="height: 50px">
+        <input type="text" id="testInput" style="width: 300px"/>
+    </div>
+    <div style="height: 100px">
+        <textarea type="text" id="testTextarea" style="width: 300px"></textarea>
+    </div>
+</body>
+<script type="text/javascript">
+    seajs.use(['jquery'],function($){
+        $(':input').mouseup(function(e){
+
+            var getSelection = function(){
+                return document.selection || window.getSelection();
+            };
+            var selection=null;
+            if(selection=document.selection){
+                var textSelection = selection.createRange();
+
+//                textSelection.execCommand('Bold');
+
+                var textRange = e.target.createTextRange();
+
+//                textSelection.setEndPoint('StartToStart', textRange);
+//                console.log(textSelection.text.length);
+                textRange.moveStart('character',3);
+                textRange.collapse(true);
+                textRange.select();
+
+
+            }else if(window.getSelection){
+                selection = window.getSelection();
+
+            }
+        });
+        $(':input').focus(function(e){
+            console.log(e.target.name);
+        })
+    });
+
+</script>
+</html>

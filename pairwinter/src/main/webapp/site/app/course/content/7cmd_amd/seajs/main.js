@@ -1,10 +1,13 @@
 (function(){
     seajs.config({
+        paths:{
+            'example':'/static/course/content/7cmd_amd/seajs'
+        },
         alias:{
-            a:'./a',
-            b:'./b',
-            c:'./c',
-            def:'./def',
+            a:'example/a',
+            b:'example/b',
+            c:'example/c',
+            def:'example/def',
             'jquery':'/static/scripts/components/jquery/jquery'
         }
     });

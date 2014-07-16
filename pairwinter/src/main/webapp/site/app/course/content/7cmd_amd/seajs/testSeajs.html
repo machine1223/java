@@ -1,51 +1,326 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-    <title> backbone </title>
+    <title> Sea.js </title>
     <meta charset="utf-8">
     <meta name="Generator" content="EditPlus">
     <meta name="Author" content="">
     <meta name="Keywords" content="">
     <meta name="Description" content="">
     <link rel="stylesheet" type="text/css" href="/static/styles/js-course.css">
-    <script type="text/javascript" src="/static/scripts/components/seajs/sea-debug.js"></script>
+    <link rel="stylesheet" type="text/css" href="/static/scripts/components/syntax-highlighter/Styles/SyntaxHighlighter.css">
+    <script type="text/javascript" src="/static/scripts/components/jquery/jquery.js"></script>
+    <script type="text/javascript" src="/static/scripts/components/syntax-highlighter/Scripts/shCore.js"></script>
+    <script type="text/javascript" src="/static/scripts/components/syntax-highlighter/Scripts/shBrushJScript.js"></script>
+    <script type="text/javascript" src="/static/scripts/components/jsrender/jsrender.js"></script>
+    <script type="text/javascript" src="/course/utils.js"></script>
+    <script type="text/javascript" src="/course/ready.js"></script>
+    <script type="text/javascript" src="/static/scripts/components/seajs/2.3/sea-debug.js"></script>
+    <script type="text/javascript" src="/static/scripts/components/seajs/text/seajs-text-debug.js"></script>
     <script type="text/javascript" src="main.js"></script>
+    <style type="text/css">
+        .loginFormTemplate{
+            background-color: burlywood;
+            width: 260px;
+            padding: 30px;
+            border-radius: 10px;
+        }
+        .loginFormTemplate ul, .loginFormTemplate ul li{
+            list-style-type: none;
+        }
+        .loginFormTemplate ul li{
+            width: 150px;
+        }
+    </style>
 </head>
 <body>
 <div class="control_container">
     <a href="../../../index.html">Index</a>
-    <h2 class="title">SeaJS</h2>
+    <span class="control">
+        <a href="javascript:" class="openControl">+</a>
+        <a href="javascript:" class="closeControl">-</a>
+    </span>
+    <h2 class="title"> Sea.js </h2>
 </div>
-<div>
-    <input type="text" readonly id="lineInput"/>
-    <button id="setVal" type="button">Set</button> <br/>
-    <input type="text" readonly id="lineInput2"/>
-    <button id="setVal2" type="button">Set</button>
-
-    <button id="clear" type="button">Clear</button>
+<div class="jc_section">
+    <h3 class="jc_section_title"> Sea.js  模块定义规范（CMD）</h3>
+    <div class="jc_section_remark">在 Sea.js 中，所有 JavaScript 模块都遵循 CMD（Common Module Definition） 模块定义规范。该规范明确了模块的基本书写格式和基本交互规则。</div>
+    <div class="jc_section_sub1">
+        <h4 class="section_sub_title">define</h4>
+        <div class="section_sub_content">
+            define 是一个全局函数，用来定义模块。在 CMD 规范中，一个模块就是一个文件。
+            <ul>
+                <li>
+                    <span class="b">define(facory)</span>
+                    factory 可以是一个函数，也可以是一个对象或字符串。
+                    <pre name="code" class="javascript">
+                        define({ "foo": "bar" });//定义一个对象
+                        define('I am a template. My name is {{name}}.');//定义一个字符串，用做模板
+                        define(function(require, exports, module) {//定义一个模块
+                          // 模块代码
+                        });
+                    </pre>
+                </li>
+                <li>
+                    <span class="b">define(id?, deps?, factory)</span>
+                    字符串 id 表示模块标识（可选），数组 deps 是模块依赖（可选）
+                    <pre name="code" class="javascript">
+                        define('hello', ['jquery'], function(require, exports, module) {
+                          // 模块代码
+                        });
+                    </pre>
+                </li>
+                <li>
+                    <span class="b">define.cmd</span>
+                    一个空对象，可用来判定当前页面是否有 CMD 模块加载器
+                    <pre name="code" class="javascript">
+                        if (typeof define === "function" && define.cmd) {
+                          // 有 Sea.js 等 CMD 模块加载器存在
+                        }
+                    </pre>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="jc_section_sub1">
+        <h4 class="section_sub_title">require</h4>
+        <div class="section_sub_content">
+            require 是一个方法，接受 模块标识 作为唯一参数，用来获取其他模块提供的接口。
+            <ul>
+                <li>
+                    <span class="b">require(id)</span>
+                    factory 可以是一个函数，也可以是一个对象或字符串。
+                    <pre name="code" class="javascript">
+                        define(function(require, exports) {
+                          // 获取模块 a 的接口
+                          var a = require('./a');
+                          // 调用模块 a 的方法
+                          a.doSomething();
+                        });
+                    </pre>
+                </li>
+                <li>
+                    <span class="b">require.async(id, callback?)</span>
+                    require.async 方法用来在模块内部异步加载模块，并在加载完成后执行指定回调。callback 参数可选。
+                    <pre name="code" class="javascript">
+                        define(function(require, exports, module) {
+                          // 异步加载一个模块，在加载完成时，执行回调
+                          require.async('./b', function(b) {
+                            b.doSomething();
+                          });
+                          // 异步加载多个模块，在加载完成时，执行回调
+                          require.async(['./c', './d'], function(c, d) {
+                            c.doSomething();
+                            d.doSomething();
+                          });
+                        });
+                    </pre>
+                    <div><span class="b red">注意：</span>require 是同步往下执行，require.async 则是异步回调执行。require.async 一般用来加载可延迟异步加载的模块。</div>
+                </li>
+                <li>
+                    <span class="b">require.resolve(id)</span>
+                    使用模块系统内部的路径解析机制来解析并返回模块路径。该函数不会加载模块，只返回解析后的绝对路径
+                    <pre name="code" class="javascript">
+                        define(function(require, exports) {
+                          console.log(require.resolve('./b'));
+                          // ==> http://example.com/path/to/b.js
+                        });
+                    </pre>
+                    这可以用来获取模块路径，一般用在插件环境或需动态拼接模块路径的场景下。
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="jc_section_sub1">
+        <h4 class="section_sub_title">exports</h4>
+        <div class="section_sub_content">
+            exports 是一个对象，用来向外提供模块接口。
+            <ul>
+                <li>
+                    <span class="b">给 exports 对象增加成员</span>
+                    <pre name="code" class="javascript">
+                        define(function(require, exports) {
+                          // 对外提供 foo 属性
+                          exports.foo = 'bar';
+                          // 对外提供 doSomething 方法
+                          exports.doSomething = function() {};
+                        });
+                    </pre>
+                </li>
+                <li>
+                    <span class="b">使用 return 直接向外提供接口</span>
+                    <pre name="code" class="javascript">
+                        define(function(require) {
+                          // 通过 return 直接提供接口
+                          return {
+                            foo: 'bar',
+                            doSomething: function() {}
+                          };
+                        });
+                    </pre>
+                    如果不依赖其他模块上述代码可简化为
+                    <pre name="code" class="javascript">
+                        define({
+                          foo: 'bar',
+                          doSomething: function() {}
+                        });
+                    </pre>
+                </li>
+            </ul>
+            <div>
+                <span class="b red">注意：</span>不能覆盖方法中的exports参数！exports是module.exports的应用，对它重新赋值是不起作用的。
+                <pre name="code" class="javascript">
+                    define(function(require, exports) {
+                      // 错误用法！！!
+                      exports = {
+                        foo: 'bar',
+                        doSomething: function() {}
+                      };
+                    });
+                </pre>
+                正确的使用方式：
+                <pre name="code" class="javascript">
+                    define(function(require, exports, module) {
+                      // 正确写法
+                      module.exports = {
+                        foo: 'bar',
+                        doSomething: function() {}
+                      };
+                    });
+                </pre>
+            </div>
+        </div>
+    </div>
+    <div class="jc_section_sub1">
+        <h4 class="section_sub_title">module</h4>
+        <div class="section_sub_content">
+            module 是一个对象，上面存储了与当前模块相关联的一些属性和方法。
+            <ul>
+                <li>
+                    <span class="b">module.id</span>
+                    模块的唯一标识,如果未定义这个id，那么就会被moduel的uri覆盖。
+                    <pre name="code" class="javascript">
+                        define('id', [], function(require, exports, module) {
+                          // 模块代码
+                        });
+                    </pre>
+                </li>
+                <li>
+                    <span class="b">module.uri</span>
+                    根据模块系统的路径解析规则得到的模块绝对路径。
+                    <pre name="code" class="javascript">
+                        define(function(require, exports, module) {
+                          console.log(module.uri);
+                          // ==> http://example.com/path/to/this/file.js
+                        });
+                    </pre>
+                    一般情况下（没有在 define 中手写 id 参数时），module.id 的值就是 module.uri，两者完全相同。
+                </li>
+                <li>
+                    <span class="b">module.dependencies</span>
+                    是一个数组，表示当前模块的依赖。
+                    <pre name="code" class="javascript">
+                        if (typeof define === "function" && define.cmd) {
+                          // 有 Sea.js 等 CMD 模块加载器存在
+                        }
+                    </pre>
+                </li>
+                <li>
+                    <span class="b">module.exports</span>
+                    当前模块对外提供的接口。<br/>
+                    传给 factory 构造方法的 exports 参数是 module.exports 对象的一个引用。只通过 exports 参数来提供接口，有时无法满足开发者的所有需求。 比如当模块的接口是某个类的实例时，需要通过 module.exports 来实现：
+                    <pre name="code" class="javascript">
+                        define(function(require, exports, module) {
+                          // exports 是 module.exports 的一个引用
+                          console.log(module.exports === exports); // true
+                          // 重新给 module.exports 赋值
+                          module.exports = new SomeClass();
+                          // exports 不再等于 module.exports
+                          console.log(module.exports === exports); // false
+                        });
+                    </pre>
+                    <span class="b red">注意：</span>对 module.exports 的赋值需要同步执行，不能放在回调函数里!
+                </li>
+            </ul>
+        </div>
+    </div>
 </div>
-</body>
-<script type="text/javascript">
-    seajs.use(['jquery'],function($){
-        $('#clear').click(function () {
-            $('#lineInput').val('');
-            $('#lineInput2').val('');
-        });
-        $('#setVal').click(function(){
-            seajs.use(['a'],function(a){
-                var line = a.aLine();
-                $('#lineInput').val(line);
-            });
-        });
-        $('#setVal2').click(function(){
-            seajs.use(['def'],function(){
-                seajs.use(['def/d'],function(d){
-                    var line = d.dLine();
-                    $('#lineInput2').val(line);
+<div class="jc_section">
+    <h3 class="jc_section_title"> 示例 </h3>
+    <div class="jc_section_sub1">
+        <h4 class="section_sub_title">示例 1</h4>
+        <div class="section_sub_content">
+            <a href="javascript:void(0)" id="toCreateLoginForm">我要求使用一个登录框</a>
+            <div id="loginFormContainer"></div>
+            <pre name="code" class="javascript">
+                seajs.use(['jquery'],function($){
+                    $('#toCreateLoginForm').click(function(){
+                        var container = $('#loginFormContainer');
+                        seajs.use(['example/LoginFormModel'],function(LoginFormModel){
+                            var loginFormModel = new LoginFormModel({
+                                container:container,
+                                callback:function(){
+                                    alert('Submit 执行！');
+                                }
+                            });
+                        });
+                    });
                 });
+            </pre>
+        </div>
+    </div>
+    <div class="jc_section_sub1">
+        <h4 class="section_sub_title">示例 2</h4>
+        <div class="section_sub_content">
+            数据填充<br/>
+            <input type="text" readonly id="lineInput"/>
+            <button id="setVal" type="button">Set</button> <br/>
+            <input type="text" readonly id="lineInput2"/>
+            <button id="setVal2" type="button">Set</button>
+            <button id="clear" type="button">Clear</button>
+            <pre name="code" class="javascript">
+            seajs.use(['jquery'],function($){
+            $('#clear').click(function () {
+                $('#lineInput').val('');
+                $('#lineInput2').val('');
+            });
+            $('#setVal').click(function(){
                 seajs.use(['a'],function(a){
                     var line = a.aLine();
                     $('#lineInput').val(line);
+                });
+            });
+            $('#setVal2').click(function(){
+                seajs.use(['def'],function(){
+                    seajs.use(['def/d'],function(d){
+                        var line = d.dLine();
+                        $('#lineInput2').val(line);
+                    });
+                    seajs.use(['a'],function(a){
+                        var line = a.aLine();
+                        $('#lineInput').val(line);
+                    });
+                });
+            });
+        });
+        </pre>
+        </div>
+    </div>
+</div>
+</body>
+<script type="text/javascript">
+    seajs.on('fetch',function(data){
+        console.log(data.uri);
+    });
+    seajs.use(['jquery'],function($){
+        $('#toCreateLoginForm').click(function(){
+            var container = $('#loginFormContainer');
+            seajs.use(['example/LoginFormModel'],function(LoginFormModel){
+                var loginFormModel = new LoginFormModel({
+                    container:container,
+                    callback:function(){
+                        alert('Submit 执行！');
+                    }
                 });
             });
         });

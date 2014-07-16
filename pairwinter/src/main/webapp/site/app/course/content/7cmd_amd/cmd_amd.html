@@ -1,0 +1,137 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title> CMD vs AMD </title>
+    <meta charset="utf-8">
+    <meta name="Generator" content="EditPlus">
+    <meta name="Author" content="">
+    <meta name="Keywords" content="">
+    <meta name="Description" content="">
+    <link rel="stylesheet" type="text/css" href="/static/styles/js-course.css">
+    <link rel="stylesheet" type="text/css" href="/static/scripts/components/syntax-highlighter/Styles/SyntaxHighlighter.css">
+    <script type="text/javascript" src="/static/scripts/components/jquery/jquery.js"></script>
+    <script type="text/javascript" src="/static/scripts/components/syntax-highlighter/Scripts/shCore.js"></script>
+    <script type="text/javascript" src="/static/scripts/components/syntax-highlighter/Scripts/shBrushJScript.js"></script>
+    <script type="text/javascript" src="/static/scripts/components/jsrender/jsrender.js"></script>
+    <script type="text/javascript" src="/course/utils.js"></script>
+    <script type="text/javascript" src="/course/ready.js"></script>
+    <script type="text/javascript" src="/static/scripts/components/seajs/sea-debug.js"></script>
+    <script type="text/javascript" src="main.js"></script>
+</head>
+<body>
+<div class="control_container">
+    <a href="../../index.html">Index</a>
+    <span class="control">
+        <a href="javascript:" class="openControl">+</a>
+        <a href="javascript:" class="closeControl">-</a>
+    </span>
+    <h2 class="title">CMD(Common Module Definition) vs AMD(Asynchronous Module Definition)</h2>
+</div>
+<div class="jc_section">
+    <h3 class="jc_section_title">共同的目标 --> 实现CommonJS,使得JavaScript 的能够进行模块化开发，特别是在浏览器端。</h3>
+    <div class="jc_section_sub1">
+        <h4 class="section_sub_title">CommonJS 是什么？</h4>
+        <div class="section_sub_content">
+            CommonJS 是一个有志于构建 JavaScript 生态圈的组织。（也就是说它首先是一个组织，是一个团伙，里面有N多人。）它有一个 邮件列表，很多开发者参与其中。 整个社区致力于提高 JavaScript 程序的可移植性和可交换性，无论是在服务端还是浏览器端。<br/>
+            JavaScript 并没有内置模块系统（反正现在没有，需要等到 ES6 的普遍支持，不知还需要多少年），于是 CommonJS 创造了自己的（其次它是一个基本规范）。 传统的 CommonJS 模块如下：<br/>
+            <span class="b red">math.js</span>
+            <pre name="code" class="javascript">
+                exports.add = function() {
+                  var sum = 0, i = 0, args = arguments, l = args.length;
+                  while (i < l) {
+                    sum += args[i++];
+                  }
+                  return sum;
+                };
+            </pre>
+            <span class="b red">increment.js</span>
+            <pre name="code" class="javascript">
+                var add = require('math').add;
+                exports.increment = function(val) {
+                  return add(val, 1);
+                };
+            </pre>
+            <span class="b red">program.js</span>
+            <pre name="code" class="javascript">
+                var inc = require('increment').increment;
+                var a = 1;
+                inc(a); // 2
+            </pre>
+        </div>
+    </div>
+    <div class="jc_section_sub1">
+        <h4 class="section_sub_title">CommonJS 与浏览器</h4>
+        <div class="section_sub_content">
+            CommonJS本身的设计是基于同步概念，这种限制使得它在浏览器端几乎没有任何作为，所以出现了一些解决方案：<br/>
+            <span class="b red">服务器端组建</span>
+            开发一个服务器端组件，对模块代码作静态分析，将模块与它的依赖列表一起返回给浏览器端。 这很好使，但需要服务器安装额外的组件，并因此要调整一系列底层架构。<br/>
+            <span class="b red">用一套标准模板来封装模块定义</span>
+            由此，就出现了N多的所谓标准模板，而AMD和CMD就是他的两个模板实现,他们的结构基本如下：
+            <ul>
+                <li><span class="b">main.js</span>
+                    <pre name="code" class="javascript">
+                        define(function(require, exports, module) {
+                          exports.add = function() {
+                            var sum = 0, i = 0, args = arguments, l = args.length;
+                            while (i < l) {
+                              sum += args[i++];
+                            }
+                            return sum;
+                          };
+                        });
+                    </pre>
+                </li>
+                <li><span class="b">increment.js</span>
+                    <pre name="code" class="javascript">
+                        define(function(require, exports, module) {
+                          var add = require('math').add;
+                          exports.increment = function(val) {
+                            return add(val, 1);
+                          };
+                        });
+                    </pre>
+                </li>
+                <li><span class="b">program.js</span>
+                    <pre name="code" class="javascript">
+                        define(function(require, exports, module) {
+                          var inc = require('increment').increment;
+                          var a = 1;
+                          inc(a); // 2
+                        });
+                    </pre>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="jc_section">
+    <h3 class="jc_section_title">CMD & AMD</h3>
+    <div class="jc_section_sub1">
+        <h4 class="section_sub_title">二者的定义</h4>
+        <div class="section_sub_content">
+            为了实现模块化加载，对模块进行了一系列的定义，并由此实现规范化。
+            <ul>
+                <li><span class="b">AMD</span>
+                    AMD 是 RequireJS 在推广过程中对模块定义的规范化产出。
+                </li>
+                <li><span class="b">CMD</span>
+                    CMD 是 SeaJS 在推广过程中对模块定义的规范化产出。
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="jc_section_sub1">
+        <h4 class="section_sub_title">为什么选择CMD（sea.js）</h4>
+        <div class="section_sub_content">
+            <ul>
+                <li><span class="b">更小的体积，更少的代码</span></li>
+                <li><span class="b">就近依赖，延迟执行</span></li>
+                <li><span class="b">较好的维护(中文社区)</span></li>
+            </ul>
+        </div>
+    </div>
+</div>
+</body>
+<script type="text/javascript">
+</script>
+</html>
